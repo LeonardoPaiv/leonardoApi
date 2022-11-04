@@ -3,12 +3,14 @@ const mailSend = require('../services/emailService')
 const router = Router();
 
 
-router.post('/', (req, res) => {
-    const email = mailSend(req.body)
-    if (email) res.sendStatus(201);
-    else res.sendStatus(400)
+router.post('/', async (req, res) => {
+
+    try {
+        const email = await mailSend(req.body)
+        res.send({status: 202});
+    } catch (e) {
+        res.sendStatus(400)
+    }
 });
-
-
 
 module.exports = router;
