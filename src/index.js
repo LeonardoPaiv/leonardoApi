@@ -16,6 +16,7 @@ const corsOpitions = {
 
 const skillsController = require('./controllers/skillsController');
 const emailController = require('./controllers/emailController');
+const softSkillsControler = require('./controllers/softSkillsControler');
 
 const port = 3001;
 
@@ -28,3 +29,4 @@ app.use(cors(corsOpitions))
 
 app.use('/api/skills', skillsController)
 app.use('/api/mail', emailController)
+app.use('/api/softSkills', softSkillsControler)

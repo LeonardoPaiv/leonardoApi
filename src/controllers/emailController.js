@@ -7,7 +7,7 @@ router.post('/', async (req, res) => {
 
     try {
         const email = await mailSend(req.body)
-        res.send({status: 202});
+        res.send(email);
     } catch (e) {
         res.sendStatus(400)
     }

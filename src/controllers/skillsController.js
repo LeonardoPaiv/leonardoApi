@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const skillsModel = require('../models/skillsModel');
 const { getSkills, postSkills, putSkills, deleteSkills } = require('../services/skillsService');
 
 const router = Router();

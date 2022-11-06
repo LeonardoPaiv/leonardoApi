@@ -21,16 +21,23 @@ const sendEmail = async (mail) => {
   else if (!mail.text) value = false;
   else {
 
-    let info = await transporter.sendMail({
+    let copy = await transporter.sendMail({
       from: '"No-reply"<leonardo.paiva.connect@gmail.com>', // sender address
-      to: `leopaiva45@gmail.com, ${mail.email}`, // list of receivers
+      to: mail.email, // list of receivers
       subject: mail.subject, // Subject line
-      html: `<p>${mail.text}</p><br><b>Thank yout to enter in contact with me!</b>`, // html body
+      html: `<h1>Thank yout to enter in contact with me!</h1><p>${mail.text}</p><br><b>this is a copy of your email!</b>`, // html body
+    });
+
+    let info = transporter.sendMail({
+      from: '"No-reply"<leonardo.paiva.connect@gmail.com>', // sender address
+      to: 'leopaiva45@gmail.com', // list of receivers
+      subject: mail.subject, // Subject line
+      html: `<b>${mail.name} / ${mail.email}</b><p>${mail.text}</p>`, // html body
     });
 
     value = true
 
-    console.log(info.messageId)
+    console.log(copy.messageId)
   }
   return value;
 }
