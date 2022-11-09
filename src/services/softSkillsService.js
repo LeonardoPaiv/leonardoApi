@@ -13,6 +13,7 @@ const createSoftSkill = async (dto) => {
     
     const doc = new softSkillsModel(dto);
     const err = doc.validateSync()
+    console.log(err)
     if (err) return 400;
     else {
         const succesCreate = await softSkillsModel.create(dto).then(() => 201).catch(e => {
@@ -23,6 +24,23 @@ const createSoftSkill = async (dto) => {
     }
 }
 
+const updateSoftSkill = async (id, update) => {
+    let doc = await softSkillsModel.findByIdAndUpdate(id, update);
+    return doc;
+}
+
+const deleteSoftSkill = async (id) => {
+    softSkillsModel.findByIdAndDelete(id, (err, objeto) => {
+        if (err) resposta = err;
+        else resposta = `deleted: ${objeto}`;
+    });
+    return;
+}
+
 exports.getSoftSkills = getSoftSkills
 
 exports.createSoftSkill = createSoftSkill
+
+exports.updateSoftSkill = updateSoftSkill
+
+exports.deleteSoftSkill = deleteSoftSkill

@@ -15,7 +15,6 @@ const postSkills = async (skill) => {
 }
 
 const putSkills = async (id, update) => {
-    console.log(update);
     let doc = await skillsModel.findByIdAndUpdate(id, update);
     return doc;
 }
