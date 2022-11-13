@@ -20,6 +20,9 @@ const softSkillsControler = require('./controllers/softSkillsControler');
 const employmentHistory = require('./controllers/employmentController');
 const education = require('./controllers/educationController');
 const profile = require('./controllers/profileController');
+const shortcourse = require('./controllers/shortCourseControler');
+const certificate = require('./controllers/CertificateControler');
+const projects = require('./controllers/projectsController');
 const auth = require('./controllers/authController');
 
 const port = 3001;
@@ -37,4 +40,7 @@ app.use('/api/softSkills', softSkillsControler)
 app.use('/api/employment', employmentHistory)
 app.use('/api/education', education)
 app.use('/api/profile', profile)
+app.use('/api/shortCourses', shortcourse)
+app.use('/api/certificate', certificate)
+app.use('/api/projects', projects)
 app.use('/auth/', auth)
