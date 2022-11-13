@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     res.send(skillList)
 });
 
-router.post('/', async (req, res) => {
+router.post('/create', async (req, res) => {
     const resposta = await postSkills(req.body)
     if(resposta === 201) res.sendStatus(resposta);
     else res.sendStatus(400)

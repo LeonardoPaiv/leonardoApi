@@ -10,8 +10,10 @@ router.get('/', async (req, res) => {
     res.send(resposta)
 })
 
-router.put('/update', async (req, res) => {
-    const resposta = await updateProjects(req.body.id, req.body);
+router.put('/update', multer.single('image'), async (req, res) => {
+    const { title, description, router} = req.body;
+    const { path } = req.file;
+    const resposta = await updateProjects(req.body.id, {title, description, router, path});
     res.send(resposta)
 });
 
