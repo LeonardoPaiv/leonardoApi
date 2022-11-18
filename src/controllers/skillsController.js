@@ -8,6 +8,12 @@ router.get('/', async (req, res) => {
     res.send(skillList)
 });
 
+router.use((req, res, next) => {
+    if (req.user) next();
+    else res.sendStatus(401)
+})
+
+
 router.post('/create', async (req, res) => {
     const resposta = await postSkills(req.body)
     if(resposta === 201) res.sendStatus(resposta);

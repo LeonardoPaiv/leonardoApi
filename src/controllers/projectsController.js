@@ -10,6 +10,11 @@ router.get('/', async (req, res) => {
     res.send(resposta)
 })
 
+router.use((req, res, next) => {
+    if (req.user) next();
+    else res.sendStatus(401)
+})
+
 router.put('/update', multer.single('image'), async (req, res) => {
     const { title, description, router} = req.body;
     const { path } = req.file;

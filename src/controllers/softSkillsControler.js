@@ -13,6 +13,12 @@ router.post('/create', async (req, res) => {
     res.sendStatus(resposta)
 })
 
+router.use((req, res, next) => {
+    if (req.user) next();
+    else res.sendStatus(401)
+})
+
+
 router.put('/update', async (req, res) => {
     const resposta = await updateSoftSkill(req.body.id, req.body);
     res.send(resposta)

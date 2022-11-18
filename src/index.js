@@ -1,8 +1,12 @@
 require('dotenv').config();
 
 const express = require('express');
+const session = require('express-session')
 const app = express()
 const cors = require('cors');
+const passport = require('passport')
+
+require('./strategies/local');
 
 
 const mongoose = require('mongoose');
@@ -33,6 +37,17 @@ app.on('on', () => {
 
 app.use(express.json());
 app.use(cors(corsOpitions))
+
+app.use(
+    session({
+        secret: 'justASimpleTest',
+        resave: false,
+        saveUninitialized: false
+    })
+)
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/api/skills', skillsController)
 app.use('/api/mail', emailController)
