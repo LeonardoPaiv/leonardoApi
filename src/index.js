@@ -14,8 +14,9 @@ mongoose.connect(process.env.dbConection).then(() => app.emit('on'));
 
 
 const corsOpitions = {
-    origin: '*',
-    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+    origin: 'http://localhost:4200',
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
+    credentials: true
 }
 
 const skillsController = require('./controllers/skillsController');

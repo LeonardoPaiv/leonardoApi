@@ -9,7 +9,6 @@ passport.serializeUser((user, done) => done(null, user.id))
 
 passport.deserializeUser(async (id, done) => {
     try {
-        console.log(id)
         const user = await User.findById(id);
         if (!user) throw new Error('User not found')
         done(null, user)
@@ -21,8 +20,6 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
     new Strategy(
         async (username, password, done) => {
-            console.log(username)
-            console.log(password)
             try {
                 if (!username || !password) {
                     throw new Error('Missing Credentials');

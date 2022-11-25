@@ -8,15 +8,16 @@ router.get('/', async (req, res) => {
     res.send(resposta)
 })
 
+router.use((req, res, next) => {
+    if (req.user) next();
+    else res.sendStatus(401)
+})
+
 router.post('/create', async (req, res) => {
     resposta = await createSoftSkill(req.body);
     res.sendStatus(resposta)
 })
 
-router.use((req, res, next) => {
-    if (req.user) next();
-    else res.sendStatus(401)
-})
 
 
 router.put('/update', async (req, res) => {
