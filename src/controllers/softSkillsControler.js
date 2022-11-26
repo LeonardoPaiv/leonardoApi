@@ -15,7 +15,7 @@ router.use((req, res, next) => {
 
 router.post('/create', async (req, res) => {
     resposta = await createSoftSkill(req.body);
-    res.sendStatus(resposta)
+    res.status(resposta).send({msg: 'success'})
 })
 
 

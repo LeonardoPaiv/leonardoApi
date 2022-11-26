@@ -16,7 +16,7 @@ router.use((req, res, next) => {
 
 router.post('/create', async (req, res) => {
     const resposta = await postSkills(req.body)
-    if(resposta === 201) res.sendStatus(resposta);
+    if(resposta === 201) res.status(resposta).send({msg: 'success'})
     else res.sendStatus(400)
 });
 
