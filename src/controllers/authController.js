@@ -9,6 +9,13 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
     res.status(200).send({login: 'success'})
 })
 
+router.post('/logout', function(req, res, next){
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      res.redirect('/');
+    });
+  });
+
 router.post('/register', async (req, res) => {
     const {username, password} = req.body;
     if (username && password) {
