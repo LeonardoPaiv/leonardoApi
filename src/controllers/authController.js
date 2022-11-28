@@ -9,10 +9,10 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
     res.status(200).send({login: 'success'})
 })
 
-router.post('/logout', function(req, res, next){
+router.delete('/logout', function(req, res, next){
     req.logout(function(err) {
       if (err) { return next(err); }
-      res.redirect('/');
+      res.send({msg: 'logout success'});
     });
   });
 
