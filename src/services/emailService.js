@@ -25,7 +25,7 @@ const sendEmail = async (mail) => {
       from: '"No-reply"<leonardo.paiva.connect@gmail.com>', // sender address
       to: mail.email, // list of receivers
       subject: mail.subject, // Subject line
-      html: `<h1>Thank yout to enter in contact with me!</h1><p>${mail.text}</p><br><b>this is a copy of your email!</b>`, // html body
+      html: `<h1>Thank you for contacting me!</h1><p>${mail.text}</p><br><b>this is a copy of your email!</b>`, // html body
     });
 
     let info = transporter.sendMail({

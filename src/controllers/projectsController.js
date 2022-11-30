@@ -1,8 +1,6 @@
 const { Router } = require('express');
 const { getProjects, createProjects, updateProjects, deleteProjects } = require('../services/projectService');
 
-const multer = require('../middlewares/multer')
-
 const router = Router();
 
 router.get('/', async (req, res) => {
@@ -15,10 +13,9 @@ router.use((req, res, next) => {
     else res.sendStatus(401)
 })
 
-router.put('/update', multer.single('image'), async (req, res) => {
-    const { title, description, router} = req.body;
-    const { path } = req.file;
-    const resposta = await updateProjects(req.body.id, {title, description, router, path});
+router.put('/update', async (req, res) => {
+    const { project, description, imagePath} = req.body;
+    const resposta = await updateProjects(req.body.id, { project, description, imagePath});
     res.send(resposta)
 });
 
@@ -27,11 +24,11 @@ router.delete('/delete/:id', async (req, res) => {
     res.send(resposta);
 })
 
-router.post('/create', multer.single('image'), async(req, res) => {
-    const { title, description, router} = req.body;
-    const { path } = req.file;
-    resposta = await createProjects({title, description, router, path});
-    res.sendStatus(resposta)
+router.post('/create', async(req, res) => {
+    const { project, description, imagePath} = req.body;
+    resposta = await createProjects({project, description, imagePath});
+    if (resposta === 201) res.status(201).send({msg: 'success'})
+    else res.send({msg: 'error'})
 })
 
 module.exports = router

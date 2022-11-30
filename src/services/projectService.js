@@ -13,7 +13,6 @@ const createProjects = async (dto) => {
     
     const doc = new projectModel(dto);
     const err = doc.validateSync()
-    console.log(err)
     if (err) return 400;
     else {
         const succesCreate = await projectModel.create(dto).then(() => 201).catch(e => {
